@@ -1,0 +1,99 @@
+﻿<Window x:Class="Converters_example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Converters_example"
+        mc:Ignorable="d"
+        Title="Identity Generator" Height="450" Width="800">
+    <Window.Resources>
+        <local:CNPConverter x:Key="CnpConverter" />
+    </Window.Resources>
+    <Grid Background="#212529">
+        <StackPanel Margin="50">
+            <Label FontFamily="Roboto"   Foreground="#CED4DA">County:</Label>
+            <ComboBox Background="#212529" FontFamily="Roboto" Foreground="Black" Name="CountyCBox">
+                <ComboBoxItem>Alba</ComboBoxItem>
+                <ComboBoxItem>Arad</ComboBoxItem>
+                <ComboBoxItem>Arges</ComboBoxItem>
+                <ComboBoxItem>Bacau</ComboBoxItem>
+                <ComboBoxItem>Bihor</ComboBoxItem>
+                <ComboBoxItem>Bistrita-Nasaud</ComboBoxItem>
+                <ComboBoxItem>Botosani</ComboBoxItem>
+                <ComboBoxItem>Brasov</ComboBoxItem>
+                <ComboBoxItem>Braila</ComboBoxItem>
+                <ComboBoxItem>Buzau</ComboBoxItem>
+                <ComboBoxItem>Caras-Severin</ComboBoxItem>
+                <ComboBoxItem>Cluj</ComboBoxItem>
+                <ComboBoxItem>Constanta</ComboBoxItem>
+                <ComboBoxItem>Covasna</ComboBoxItem>
+                <ComboBoxItem>Dambovita</ComboBoxItem>
+                <ComboBoxItem>Dolj</ComboBoxItem>
+                <ComboBoxItem>Galati</ComboBoxItem>
+                <ComboBoxItem>Gorj</ComboBoxItem>
+                <ComboBoxItem>Harghita</ComboBoxItem>
+                <ComboBoxItem>Hunedoara</ComboBoxItem>
+                <ComboBoxItem>Ialomita</ComboBoxItem>
+                <ComboBoxItem>Iasi</ComboBoxItem>
+                <ComboBoxItem>Ilfov</ComboBoxItem>
+                <ComboBoxItem>Maramures</ComboBoxItem>
+                <ComboBoxItem>Mehedinti</ComboBoxItem>
+                <ComboBoxItem>Mures</ComboBoxItem>
+                <ComboBoxItem>Neamt</ComboBoxItem>
+                <ComboBoxItem>Olt</ComboBoxItem>
+                <ComboBoxItem>Prahova</ComboBoxItem>
+                <ComboBoxItem>Satu Mare</ComboBoxItem>
+                <ComboBoxItem>Salaj</ComboBoxItem>
+                <ComboBoxItem>Sibiu</ComboBoxItem>
+                <ComboBoxItem>Suceava</ComboBoxItem>
+                <ComboBoxItem>Teleorman</ComboBoxItem>
+                <ComboBoxItem>Timis</ComboBoxItem>
+                <ComboBoxItem>Tulcea</ComboBoxItem>
+                <ComboBoxItem>Vaslui</ComboBoxItem>
+                <ComboBoxItem>Valcea</ComboBoxItem>
+                <ComboBoxItem>Vrancea</ComboBoxItem>
+                <ComboBoxItem>Bucuresti</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 1</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 2</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 3</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 4</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 5</ComboBoxItem>
+                <ComboBoxItem>Bucuresti - Sector 6</ComboBoxItem>
+                <ComboBoxItem>Calarasi</ComboBoxItem>
+                <ComboBoxItem>Giurgiu</ComboBoxItem>
+            </ComboBox>
+            <Label FontFamily="Roboto" Foreground="#CED4DA">Birthday:</Label>
+            <DatePicker FontFamily="Roboto" Name="BDayPicker">
+                <DatePicker.Resources>
+                    <Style TargetType ="DatePickerTextBox">
+                        <Setter Property ="IsReadOnly" Value="True"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Padding" Value="2"/>
+                    </Style>
+                </DatePicker.Resources>
+            </DatePicker>
+            <Label Foreground="#CED4DA">Gender:</Label>
+            <ComboBox Name="GenderCBox">
+                <ComboBoxItem>Female</ComboBoxItem>
+                <ComboBoxItem>Male</ComboBoxItem>
+            </ComboBox>
+            <Button FontFamily="Roboto" Margin="50" Click="Button_Click">Generate</Button>
+            <TextBlock Name ="ResultTBlock" 
+                       TextAlignment="Center"
+                       TextWrapping="Wrap" 
+                       Margin="20" 
+                       FontFamily="Roboto"
+                       FontWeight="Bold"
+                       Foreground="LimeGreen">
+                <TextBlock.Text>
+                    <MultiBinding Converter="{StaticResource CnpConverter}">
+                        <Binding ElementName="GenderCBox" Path="Text"></Binding>
+                        <Binding ElementName="BDayPicker" Path="Text"></Binding>
+                        <Binding ElementName="CountyCBox" Path="Text"></Binding>
+                    </MultiBinding>
+
+                </TextBlock.Text>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
